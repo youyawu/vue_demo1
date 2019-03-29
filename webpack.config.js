@@ -2,7 +2,7 @@ const cleanWebpackPlugin = require('clean-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const copyWebpackPlugin = require("copy-webpack-plugin")
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const extract = require("extract-text-webpack-plugin")
+const miniCssPlugin = require("mini-css-extract-plugin")
 const friendly = require('friendly-errors-webpack-plugin')
 const config = require('./config')
 let webpack = require('webpack')
@@ -38,11 +38,8 @@ module.exports = {
                 use: 'vue-loader'
             }, {
                 test: /\.css$/,
-                  use: ['style-loader', 'css-loader']
-                // use: extract.extract({
-                //     fallback: "style-loader",
-                //     use: "css-loader"
-                // })
+                 use: [ miniCssPlugin.loader, 'css-loader']
+              
             }, {
                 test: /\.(woff|ttf)$/,
                 use: 'file-loader'
@@ -62,7 +59,9 @@ module.exports = {
 
             clearConsole: true,
         }),
-   //     new extract("mystyle.css")
+      new miniCssPlugin({
+          filename:"mystyle.css"
+      })
     ],
     devServer: {
         // contentBase: './public',

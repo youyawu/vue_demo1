@@ -10,30 +10,30 @@ export default new router({
         {
             path: '',
            component:layout,
-        //   redirect:'home',
+          redirect:'home',
            children:[
-            //    {
-            //        path:'home',
-            //        component: () => import('@/views/home'),
-            //    } 
+               {
+                   path:'home',
+                   component: () => import('@/views/home'),
+               } 
            ]
             
 
         },
-        // {
-        //     path:'/about',
-        //     component:layout,
-        //     redirect:'/about/index',
-        //     children:[
-        //         {
-        //             path:'index',
-        //             component:x=>require(['@/views/about'],x)
-        //         }
-        //     ]
-        // },
-        // {
-        //     path: '*',
-        //     component: () => import('@/views/404')
-        // }
+        {
+            path:'/about',
+            component:layout,
+            redirect:'/about/index',
+            children:[
+                {
+                    path:'index',
+                    component:x=>require(['@/views/about'],x)
+                }
+            ]
+        },
+        {
+            path: '*',
+            component: () => import('@/views/404')
+        }
     ]
 })

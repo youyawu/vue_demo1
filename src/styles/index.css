@@ -9,7 +9,7 @@ color: red;
     height: 100%;
     grid-template :  
     "a a" 100px
-    "b c" auto
+    "b c" 1fr
     "d d" 100px
     / 200px auto;
 

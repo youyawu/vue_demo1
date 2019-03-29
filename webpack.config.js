@@ -38,11 +38,11 @@ module.exports = {
                 use: 'vue-loader'
             }, {
                 test: /\.css$/,
-                //   use: ['style-loader', 'css-loader']
-                use: extract.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
+                  use: ['style-loader', 'css-loader']
+                // use: extract.extract({
+                //     fallback: "style-loader",
+                //     use: "css-loader"
+                // })
             }, {
                 test: /\.(woff|ttf)$/,
                 use: 'file-loader'
@@ -55,14 +55,14 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new copyWebpackPlugin(),
         new VueLoaderPlugin(),
-        // new friendly({
-        //     compilationSuccessInfo: {
-        //         messages: [`Your application is running here: http://${config.dev.host}:${config.dev.port}`],
-        //     },
+        new friendly({
+            compilationSuccessInfo: {
+                messages: [`Your application is running here: http://${config.dev.host}:${config.dev.port}`],
+            },
 
-        //     clearConsole: true,
-        // }),
-        new extract("mystyle.css")
+            clearConsole: true,
+        }),
+   //     new extract("mystyle.css")
     ],
     devServer: {
         // contentBase: './public',
@@ -70,6 +70,6 @@ module.exports = {
         inline: true,
         hot: true,
         overlay: true,
-      //  quiet: true,
+        quiet: true,
     }
 }

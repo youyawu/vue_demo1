@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <div class="header">头部</div>
-    <div class="nav">
-      <div class="n">nav</div>
+    <div class="header">
+      <div class="_header">头部xx</div>
     </div>
-        <!-- <el-scrollbar wrap-class="list"  class="nav" >
-         <div v-for="x in 100" :key="x">{{x}}</div>
+ 
+        <el-scrollbar   class="nav" >
+         <div v-for="x in 30" :key="x" class="x">{{x}}</div>
        
         
-        </el-scrollbar> -->
+        </el-scrollbar>
     
     <div class="content">
       <router-view></router-view>
@@ -18,12 +18,15 @@
 </template>
 <style>
  
-.list{
-  height: 100%;
+.x{
   background: red;
+  margin: 10px
 }
-.n{
-  height: 100%;
+._header{
+  width: 90%;
+  height: 90%;
+  background: #000;
+  color: #fff;
 }
 </style>
 

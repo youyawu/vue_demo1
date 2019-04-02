@@ -4,7 +4,7 @@
       <div class="_header">头部xx</div>
     </div>
  
-        <el-scrollbar   class="nav" >
+        <el-scrollbar   class="nav"  wrap-class="sdf">
          <div v-for="x in 30" :key="x" class="x">{{x}}</div>
        
         
@@ -20,13 +20,18 @@
  
 .x{
   background: red;
-  margin: 10px
+  margin: 5px
 }
 ._header{
   width: 90%;
   height: 90%;
   background: #000;
   color: #fff;
+}
+.sdf{
+  color: aqua;
+  position: absolute;
+  width: 100%;
 }
 </style>
 

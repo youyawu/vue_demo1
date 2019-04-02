@@ -2,7 +2,7 @@ const cleanWebpackPlugin = require('clean-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const copyWebpackPlugin = require("copy-webpack-plugin")
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const miniCssPlugin = require("mini-css-extract-plugin")
+ const miniCssPlugin = require("mini-css-extract-plugin")
 const friendly = require('friendly-errors-webpack-plugin')
 const config = require('./config')
 let webpack = require('webpack')
@@ -38,7 +38,8 @@ module.exports = {
                 use: 'vue-loader'
             }, {
                 test: /\.css$/,
-                 use: [ miniCssPlugin.loader, 'css-loader']
+             use: [ 'css-hot-loader',miniCssPlugin.loader, 'css-loader']
+            //     use:['style-loader','css-loader' ]
               
             }, {
                 test: /\.(woff|ttf)$/,
@@ -60,7 +61,8 @@ module.exports = {
             clearConsole: true,
         }),
       new miniCssPlugin({
-          filename:"mystyle.css"
+        //   filename:"mystyle.css",
+          chunkFilename: "[id].css"
       })
     ],
     devServer: {

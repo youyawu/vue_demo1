@@ -2,7 +2,7 @@ const cleanWebpackPlugin = require('clean-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const copyWebpackPlugin = require("copy-webpack-plugin")
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
- const miniCssPlugin = require("mini-css-extract-plugin")
+const miniCssPlugin = require("mini-css-extract-plugin")
 const friendly = require('friendly-errors-webpack-plugin')
 const config = require('./config')
 let webpack = require('webpack')
@@ -13,15 +13,15 @@ module.exports = {
     devtool: 'source-map',
     mode: 'development',
     entry: {
-        a: './src/index.js',
-        b: './src/main.js'
+        a: './src/index.ts',
+        // b: './src/main.ts',
     },
     output: {
         path: __dirname + '/public',
         filename: '[name].js'
     },
     resolve: {
-        extensions: ['.js', '.json', '.vue'],
+        extensions: ['.js', '.json', '.vue', '.ts', '.tsx'],
         alias: {
             // 'vue$': 'vue/dist/vue.esm.js'
             '@': path.resolve(__dirname, 'src')
@@ -36,14 +36,35 @@ module.exports = {
             {
                 test: /\.vue$/,
                 use: 'vue-loader'
-            }, {
+            },
+
+            {
                 test: /\.css$/,
-             use: [ 'css-hot-loader',miniCssPlugin.loader, 'css-loader']
-            //     use:['style-loader','css-loader' ]
-              
-            }, {
+             use: ['css-hot-loader', miniCssPlugin.loader, 'css-loader'],
+               //        use: ['style-loader', 'css-loader'],
+                // include: [
+                //     /src/,//表示在src目录下的css需要编译
+                //     '/node_modules/element-ui/lib/'   //增加此项
+                //   ],
+
+            },
+
+
+            {
                 test: /\.(woff|ttf)$/,
-                use: 'file-loader'
+                use: 'file-loader',
+                // exclude: /(node_modules)/
+            }
+            , {
+                test: /\.ts$/,
+                // use:'ts-loader',
+                use: [
+                    "babel-loader",
+                    {
+                        loader: "ts-loader",
+                        options: { appendTsSuffixTo: [/\.vue$/] }
+                    }
+                ]
             }
         ]
     },
@@ -60,10 +81,10 @@ module.exports = {
 
             clearConsole: true,
         }),
-      new miniCssPlugin({
-        //   filename:"mystyle.css",
-          chunkFilename: "[id].css"
-      })
+        new miniCssPlugin({
+            //   filename:"mystyle.css",
+            chunkFilename: "[id].css"
+        })
     ],
     devServer: {
         // contentBase: './public',

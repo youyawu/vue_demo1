@@ -1,12 +1,13 @@
 import vue from 'vue'
 import router from 'vue-router'
-import layout from '@/views/layout'
+import layout from '@/views/layout/index.vue'
 
 vue.use(router)
 
 
 export default new router({
     routes: [
+      
         {
             path: '',
            component:layout,
@@ -14,10 +15,10 @@ export default new router({
            children:[
                {
                    path:'home',
-                   component: () => import('@/views/home'),
+                   component: () => import('@/views/home.vue'),
                } 
            ]
-            
+
 
         },
         {
@@ -27,13 +28,13 @@ export default new router({
             children:[
                 {
                     path:'index',
-                    component:x=>require(['@/views/about'],x)
+                    component:()=>import("@/views/about.vue")
                 }
             ]
         },
         {
             path: '*',
-            component: () => import('@/views/404')
+            component: () => import('@/views/404.vue')
         }
     ]
 })

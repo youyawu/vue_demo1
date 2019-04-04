@@ -6,8 +6,8 @@
  
   </div>
 </template>
-<script>
- import  t from "./t"
+<script lang="ts">
+ import  t from "./t.vue"
 export default {
  components:{
    t

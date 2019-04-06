@@ -1,20 +1,21 @@
 <template>
   <el-menu
-    default-active="1-2"
+    :default-active="$route.path"
     :default-openeds="opens"
+    :router="true"
   >
     <ElSubmenu index="1">
       <template slot="title">
         <i class="el-icon-location"></i>
-        导航一
+        导航一 
       </template>
       <el-menu-item-group>
         <template slot="title">分组1</template>
-        <ElMenuItem index="1-1">
-          1-1
+        <ElMenuItem index="/about/index" route="/about/index">
+       about
         </ElMenuItem>
-        <ElMenuItem index="1-2">
-          1-2
+        <ElMenuItem index="/home/index" route="/home/index">
+          home
         </ElMenuItem>
       </el-menu-item-group>
       <el-menu-item-group title="分组2">
@@ -48,12 +49,10 @@
   </el-menu>
 </template>
 <script  lang="ts"  >
-export default {
-  data() {
-    return {
-      opens: ['1']
-    }
-  }
+import { Component,Vue } from 'vue-property-decorator'
+@Component
+export default class Nav extends Vue {
+private opens:string[] = ['1']
 }
 </script>
 

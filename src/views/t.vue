@@ -3,27 +3,25 @@
     {{x}}
   </component>
 </template>
-<script>
-export default {
-  props: {
-    x: {
-      type: String,
-      required: true
-    }
-  },
-  methods: {
-    init(x) {
+<script lang="ts">
+import {Component,Vue,Prop} from 'vue-property-decorator'
+@Component
+export default class T extends Vue{
+  @Prop() private x!:string
+ 
+ 
+    init() {
 
-      return /^https?:\/\//.test(x) ? {
+      return /^https?:\/\//.test(this.x) ? {
         is: 'a',
-        href: x,
+        href: this.x,
         target: '_blank'
       } : {
           is: 'router-link',
-          to: x
+          to: this.x
         }
 
     }
   }
-}
+ 
 </script>

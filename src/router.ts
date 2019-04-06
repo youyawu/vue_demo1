@@ -6,21 +6,25 @@ vue.use(router)
 
 
 export default new router({
+    mode:'history',
     routes: [
       
         {
             path: '',
            component:layout,
-          redirect:'home',
-           children:[
-               {
-                   path:'home',
-                   component: () => import('@/views/home.vue'),
-               } 
-           ]
-
-
+          redirect:'/home',
         },
+        {
+            path:'/home',
+            component:layout,
+            redirect:'/home/index',
+            children:[
+                {
+                    path:'index',
+                    component:()=>import("@/views/home.vue")
+                }
+            ]
+        },    
         {
             path:'/about',
             component:layout,

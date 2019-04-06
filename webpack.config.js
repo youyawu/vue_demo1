@@ -18,12 +18,12 @@ module.exports = {
     },
     output: {
         path: __dirname + '/public',
-        filename: '[name].js'
+        filename: '[name].js',
+        publicPath: '/'
     },
     resolve: {
         extensions: ['.js', '.json', '.vue', '.ts', '.tsx'],
         alias: {
-            // 'vue$': 'vue/dist/vue.esm.js'
             '@': path.resolve(__dirname, 'src')
         }
     },
@@ -37,11 +37,22 @@ module.exports = {
                 test: /\.vue$/,
                 use: 'vue-loader'
             },
-
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+                //     use: ['sass-loader', 'css-hot-loader', miniCssPlugin.loader, 'css-loader'],
+                //    use: [{
+                //     loader: 'style-loader'
+                // }, {
+                //     loader: 'css-loader'
+                // }, {
+                //     loader: 'sass-loader'
+                // }]
+            },
             {
                 test: /\.css$/,
-             use: ['css-hot-loader', miniCssPlugin.loader, 'css-loader'],
-               //        use: ['style-loader', 'css-loader'],
+                use: ['css-hot-loader', miniCssPlugin.loader, 'css-loader'],
+                //        use: ['style-loader', 'css-loader'],
                 // include: [
                 //     /src/,//表示在src目录下的css需要编译
                 //     '/node_modules/element-ui/lib/'   //增加此项
@@ -69,8 +80,13 @@ module.exports = {
         ]
     },
     plugins: [
-        new cleanWebpackPlugin(),
-        new htmlWebpackPlugin({ template: './index.html' }),
+         new cleanWebpackPlugin(),
+          new htmlWebpackPlugin({
+            title:'myPage',
+             template:'./index.html'
+            // templateContent:'div'
+          
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new copyWebpackPlugin(),
         new VueLoaderPlugin(),
@@ -82,16 +98,17 @@ module.exports = {
             clearConsole: true,
         }),
         new miniCssPlugin({
-            //   filename:"mystyle.css",
+            filename: "mystyle.css",
             chunkFilename: "[id].css"
         })
     ],
     devServer: {
-        // contentBase: './public',
+        //   contentBase: './public',
         port: config.dev.port,
         inline: true,
         hot: true,
         overlay: true,
         quiet: true,
+        historyApiFallback: true,
     }
 }

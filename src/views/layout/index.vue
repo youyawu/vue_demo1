@@ -3,10 +3,10 @@
     <div class="header">
       头部
     </div>
-    <div class="nav h100">
-      <el-scrollbar>
+    <div class="nav ">
+      <el-scrollbar class="h100">
 
-        <m-nav></m-nav>
+        <m-nav :list="list"></m-nav>
       </el-scrollbar>
     </div>
 
@@ -26,7 +26,9 @@ import mNav from './nav.vue'
   }
 })
 export default class layout extends Vue {
-
+private list :object[] = [{
+  title:'test'
+}];
 }
  
 </script>

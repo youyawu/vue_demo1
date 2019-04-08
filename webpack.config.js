@@ -39,24 +39,11 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
-                //     use: ['sass-loader', 'css-hot-loader', miniCssPlugin.loader, 'css-loader'],
-                //    use: [{
-                //     loader: 'style-loader'
-                // }, {
-                //     loader: 'css-loader'
-                // }, {
-                //     loader: 'sass-loader'
-                // }]
+                use: [ 'css-hot-loader', miniCssPlugin.loader,   'css-loader', 'sass-loader']
             },
             {
                 test: /\.css$/,
                 use: ['css-hot-loader', miniCssPlugin.loader, 'css-loader'],
-                //        use: ['style-loader', 'css-loader'],
-                // include: [
-                //     /src/,//表示在src目录下的css需要编译
-                //     '/node_modules/element-ui/lib/'   //增加此项
-                //   ],
 
             },
 
@@ -84,8 +71,6 @@ module.exports = {
           new htmlWebpackPlugin({
             title:'myPage',
              template:'./index.html'
-            // templateContent:'div'
-          
         }),
         new webpack.HotModuleReplacementPlugin(),
         new copyWebpackPlugin(),

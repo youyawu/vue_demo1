@@ -1,12 +1,8 @@
 <template>
-
-  <router-view></router-view>
-
+  <router-view> 1 </router-view>
 </template>
- 
- 
- <script  >
+
+<script>
 import Vue from "vue";
 export default Vue.extend({});
 </script>
- 
